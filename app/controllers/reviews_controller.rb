@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.create!(review_params)
-    json(@review, :created)
+    json_response(@review, :created)
   end
 
   def update
