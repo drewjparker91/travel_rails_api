@@ -8,5 +8,5 @@
 
 Review.destroy_all
 20.times do |i|
-  Review.create!(body: Faker::Hacker.say_something_smart, city: Faker::Address.city, country: Faker::Address.country, rating: rand(1...6), user_name: Faker::Books::Dune.character)
+  Review.create!(body: Faker::Hipster.paragraph_by_chars(characters: 50, supplemental: false), city: Faker::Address.city, country: Faker::Address.country, rating: rand(1...6), user_name: Faker::Books::Dune.character)
 end    

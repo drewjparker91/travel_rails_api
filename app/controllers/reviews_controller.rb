@@ -1,7 +1,13 @@
 class ReviewsController < ApplicationController
   
   def index
-    @reviews = Review.all 
+    if params[:city]
+    city = params[:city]
+    end
+    if params[:country]
+    country = params[:country]
+    end
+    @reviews = Review.search(city, country)
     json_response(@reviews)
   end
 
@@ -30,7 +36,11 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+
+
   def review_params
     params.permit(:body, :city, :country, :user_name, :rating)
   end
+
 end
