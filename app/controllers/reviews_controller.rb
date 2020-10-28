@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     if params[:country]
     country = params[:country]
     end
-    @reviews = Review.search(city, country)
+    @reviews = Review.search(city, country).paginate(page: params[:page], per_page:3)
     json_response(@reviews)
   end
 
