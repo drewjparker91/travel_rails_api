@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  
+  before_action :restrict_access
+
   def index
     if params[:city]
     city = params[:city]
@@ -35,9 +36,18 @@ class ReviewsController < ApplicationController
     end
   end
 
-  private
+  private 
 
+  def restrict_access
+    api_key = ApiKey.find_by_token(params[:token])
+    head :unauthorized unless api_key
+  end
 
+  # def restrict_access
+  #   authenticate_or_request_with_http_token do |token, options|
+  #     ApiKey.exists?(token: token)
+  #   end
+  # end
 
   def review_params
     params.permit(:body, :city, :country, :user_name, :rating)
