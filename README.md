@@ -32,3 +32,7 @@ http://localhost:3000/reviews?city=a&page=2&token=5dcf89ff80340091cc1cc13e0be807
 
 * how to search for city and country:
 http://localhost:3000/reviews?city=ch&country=a&token=2a1ca48138e7d57c438d63b817ed8513
+
+* to make a put(edit) request, you must be at /review/id?token=YOUREGENERATEDTOKEN
+
+* to make a post request, you must be at /reviews?token=YOUREGENERATEDTOKEN, and add review_params to the body in postman 

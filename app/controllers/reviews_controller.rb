@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     if params[:country]
     country = params[:country]
     end
-    @reviews = Review.search(city, country).paginate(page: params[:page], per_page:3)
+    @reviews = Review.search(city, country).paginate(page: params[:page], per_page:5)
     json_response(@reviews)
   end
 
@@ -35,6 +35,25 @@ class ReviewsController < ApplicationController
       render status: 200, json: { message: "review destroyed!" }
     end
   end
+
+  def random
+    city_array = []
+    Review.all.each do |obj|
+      city_array.push(obj[:city])
+    end
+    @reviews = Review.random_city(city_array)
+    json_response(@reviews)
+  end
+
+  # def random
+  #   @review = Review.all.sample
+  #   json_response(@review)
+  # end
+
+  # def recent
+  #   @desinations = Review.most_recent
+  #   json_response(@destinations)
+  # end
 
   private 
 
